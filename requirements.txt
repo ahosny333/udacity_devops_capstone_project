@@ -1,0 +1,6 @@
+pylint
+Flask
+pytest
+pandas
+numphy
+flasgger
