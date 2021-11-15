@@ -61,6 +61,19 @@ jobs:
             wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64 &&\
             chmod +x /bin/hadolint
             make lint
+
+  build-and-push-docker-image:
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build application Docker image
+          command: |
+            docker build -t $DOCKER_LOGIN/capstone-project:${CIRCLE_SHA1} .
+            docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+            docker push sabribouchlema/capstone-project:${CIRCLE_SHA1}
   
   
 workflows:
@@ -69,4 +82,5 @@ workflows:
       - build
       - test_lint:
           requires: [build]
-            
+      - build-and-push-docker-image:
+          requires: [test_lint]
