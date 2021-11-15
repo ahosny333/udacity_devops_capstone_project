@@ -65,6 +65,6 @@ workflows:
   cicd-pipeline:
     jobs:
       - build
-      - test_lint
+      - test_lint:
           requires: [build]
             
