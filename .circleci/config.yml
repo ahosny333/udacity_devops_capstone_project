@@ -73,7 +73,7 @@ jobs:
           command: |
             docker build -t $DOCKER_LOGIN/capstone-project:${CIRCLE_SHA1} .
             docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-            docker push sabribouchlema/capstone-project:${CIRCLE_SHA1}
+            docker push $DOCKER_LOGIN/capstone-project:${CIRCLE_SHA1}
   
   
 workflows:
