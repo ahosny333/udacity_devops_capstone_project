@@ -15,6 +15,6 @@ RUN pip install --upgrade pip &&\
 
 # Expose port 80
 EXPOSE 80
-bad lint
+
 # Run application at container launch
 CMD ["python", "app.py"]
